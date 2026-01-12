@@ -15,8 +15,8 @@ let package = Package(
         .library(name: "Numerics", targets: ["Numerics"]),
     ],
     dependencies: [
-        .package(path: "../../swift-standards/swift-ieee-754"),
-        .package(path: "../../swift-primitives/swift-numeric-primitives"),
+        .package(url: "https://github.com/swift-standards/swift-ieee-754.git", from: "0.0.1"),
+        .package(url: "https://github.com/swift-primitives/swift-numeric-primitives.git", from: "0.0.1"),
     ],
     targets: [
         .target(
