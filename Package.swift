@@ -28,6 +28,12 @@ let package = Package(
                 .product(name: "Integer Primitives", package: "swift-numeric-primitives"),
             ]
         ),
+        .testTarget(
+            name: "Numerics Tests",
+            dependencies: [
+                "Numerics",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
