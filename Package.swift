@@ -9,14 +9,14 @@ let package = Package(
         .iOS(.v26),
         .tvOS(.v26),
         .watchOS(.v26),
-        .visionOS(.v26),
+        .visionOS(.v26)
     ],
     products: [
-        .library(name: "Numerics", targets: ["Numerics"]),
+        .library(name: "Numerics", targets: ["Numerics"])
     ],
     dependencies: [
         .package(path: "../../swift-standards/swift-ieee-754"),
-        .package(path: "../../swift-primitives/swift-numeric-primitives"),
+        .package(path: "../../swift-primitives/swift-numeric-primitives")
     ],
     targets: [
         .target(
@@ -25,15 +25,9 @@ let package = Package(
                 .product(name: "IEEE 754", package: "swift-ieee-754"),
                 .product(name: "Numeric Primitives", package: "swift-numeric-primitives"),
                 .product(name: "Real Primitives", package: "swift-numeric-primitives"),
-                .product(name: "Integer Primitives", package: "swift-numeric-primitives"),
+                .product(name: "Integer Primitives", package: "swift-numeric-primitives")
             ]
-        ),
-        .testTarget(
-            name: "Numerics Tests",
-            dependencies: [
-                "Numerics",
-            ]
-        ),
+        )
     ],
     swiftLanguageModes: [.v6]
 )
@@ -42,6 +36,6 @@ for target in package.targets where ![.system, .binary, .plugin].contains(target
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
-        .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("MemberImportVisibility")
     ]
 }
