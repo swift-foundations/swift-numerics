@@ -27,7 +27,13 @@ let package = Package(
                 .product(name: "Real Primitives", package: "swift-numeric-primitives"),
                 .product(name: "Integer Primitives", package: "swift-numeric-primitives")
             ]
-        )
+        ),
+        .testTarget(
+            name: "Numerics Tests",
+            dependencies: [
+                "Numerics",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -38,6 +44,7 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableExperimentalFeature("Lifetimes"),
         .enableExperimentalFeature("SuppressedAssociatedTypes"),
         .enableExperimentalFeature("SuppressedAssociatedTypesWithDefaults"),
