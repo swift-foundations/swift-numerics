@@ -15,7 +15,7 @@ let package = Package(
         .library(name: "Numerics", targets: ["Numerics"])
     ],
     dependencies: [
-        .package(path: "../../swift-standards/swift-ieee-754"),
+        .package(path: "../../swift-ieee/swift-ieee-754"),
         .package(path: "../../swift-primitives/swift-numeric-primitives")
     ],
     targets: [
