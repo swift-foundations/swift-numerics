@@ -6,7 +6,6 @@
 import Real_Primitives
 
 extension Numeric.Math.Accessor where T == Double {
-    #if canImport(Darwin) || canImport(Glibc) || canImport(Musl)
     /// Sign of gamma function.
     ///
     /// Returns the sign of Gamma(x):
@@ -20,11 +19,9 @@ extension Numeric.Math.Accessor where T == Double {
         if Double(truncated) == x { return .plus }
         return truncated.isMultiple(of: 2) ? .minus : .plus
     }
-    #endif
 }
 
 extension Numeric.Math.Accessor where T == Float {
-    #if canImport(Darwin) || canImport(Glibc) || canImport(Musl)
     /// Sign of gamma function.
     ///
     /// Returns the sign of Gamma(x):
@@ -38,5 +35,4 @@ extension Numeric.Math.Accessor where T == Float {
         if Float(truncated) == x { return .plus }
         return truncated.isMultiple(of: 2) ? .minus : .plus
     }
-    #endif
 }
