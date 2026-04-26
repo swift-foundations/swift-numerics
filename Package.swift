@@ -16,7 +16,8 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../../swift-ieee/swift-ieee-754"),
-        .package(path: "../../swift-primitives/swift-numeric-primitives")
+        .package(path: "../../swift-primitives/swift-numeric-primitives"),
+        .package(path: "../../swift-iso/swift-iso-9899")
     ],
     targets: [
         .target(
@@ -25,7 +26,8 @@ let package = Package(
                 .product(name: "IEEE 754", package: "swift-ieee-754"),
                 .product(name: "Numeric Primitives", package: "swift-numeric-primitives"),
                 .product(name: "Real Primitives", package: "swift-numeric-primitives"),
-                .product(name: "Integer Primitives", package: "swift-numeric-primitives")
+                .product(name: "Integer Primitives", package: "swift-numeric-primitives"),
+                .product(name: "ISO 9899 Core", package: "swift-iso-9899")
             ]
         ),
         .testTarget(
