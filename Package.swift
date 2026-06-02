@@ -15,9 +15,9 @@ let package = Package(
         .library(name: "Numerics", targets: ["Numerics"])
     ],
     dependencies: [
-        .package(path: "../../swift-ieee/swift-ieee-754"),
-        .package(path: "../../swift-primitives/swift-numeric-primitives"),
-        .package(path: "../../swift-iso/swift-iso-9899")
+        .package(url: "https://github.com/swift-ieee/swift-ieee-754.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-numeric-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main")
     ],
     targets: [
         .target(
