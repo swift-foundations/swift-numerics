@@ -1,6 +1,6 @@
 # .github/metadata.yaml
 # Triaged by AI-assisted bulk pass (2026-04-29).
-description: "Numerics for Swift."
+description: "Unified elementary math functions, IEEE 754 binary serialization, and gamma-function support for Swift."
 topics:
   - foundations
   - numerics
