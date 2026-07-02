@@ -91,7 +91,7 @@ The gamma functions live here rather than in the primitives because their implem
 ## Community
 
 <!-- BEGIN: discussion -->
-*Discussion thread will be created at first public flip.*
+*Discussion thread will be created at first public release.*
 <!-- END: discussion -->
 
 ---
