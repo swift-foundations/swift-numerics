@@ -11,6 +11,7 @@
 // ===----------------------------------------------------------------------===//
 
 import Testing
+
 @testable import Numerics
 
 @Suite
@@ -167,74 +168,74 @@ struct ElementaryTests {
     // MARK: - Gamma Functions
 
     #if canImport(Darwin) || canImport(Glibc) || canImport(Musl)
-    @Test
-    func logGammaPositive() {
-        // logGamma(1) = log(0!) = log(1) = 0
-        let result = Double.math.logGamma(1.0)
-        #expect(result.equals.approximate(0.0, tolerance: 1e-10))
+        @Test
+        func logGammaPositive() {
+            // logGamma(1) = log(0!) = log(1) = 0
+            let result = Double.math.logGamma(1.0)
+            #expect(result.equals.approximate(0.0, tolerance: 1e-10))
 
-        // logGamma(2) = log(1!) = log(1) = 0
-        let result2 = Double.math.logGamma(2.0)
-        #expect(result2.equals.approximate(0.0, tolerance: 1e-10))
+            // logGamma(2) = log(1!) = log(1) = 0
+            let result2 = Double.math.logGamma(2.0)
+            #expect(result2.equals.approximate(0.0, tolerance: 1e-10))
 
-        // logGamma(3) = log(2!) = log(2) ≈ 0.693
-        let result3 = Double.math.logGamma(3.0)
-        #expect(result3.equals.approximate(Double.math.log(2.0), tolerance: 1e-10))
+            // logGamma(3) = log(2!) = log(2) ≈ 0.693
+            let result3 = Double.math.logGamma(3.0)
+            #expect(result3.equals.approximate(Double.math.log(2.0), tolerance: 1e-10))
 
-        // logGamma(4) = log(3!) = log(6) ≈ 1.791
-        let result4 = Double.math.logGamma(4.0)
-        #expect(result4.equals.approximate(Double.math.log(6.0), tolerance: 1e-10))
-    }
+            // logGamma(4) = log(3!) = log(6) ≈ 1.791
+            let result4 = Double.math.logGamma(4.0)
+            #expect(result4.equals.approximate(Double.math.log(6.0), tolerance: 1e-10))
+        }
 
-    @Test
-    func logGammaFloat() {
-        // Test Float variant
-        let result: Float = Float.math.logGamma(3.0)
-        #expect(result.equals.approximate(Float.math.log(2.0), tolerance: 1e-5))
-    }
+        @Test
+        func logGammaFloat() {
+            // Test Float variant
+            let result: Float = Float.math.logGamma(3.0)
+            #expect(result.equals.approximate(Float.math.log(2.0), tolerance: 1e-5))
+        }
 
-    @Test
-    func signGammaPositive() {
-        // Gamma is positive for all x >= 0
-        #expect(Double.math.signGamma(1.0) == .plus)
-        #expect(Double.math.signGamma(2.5) == .plus)
-        #expect(Double.math.signGamma(0.5) == .plus)
-        #expect(Double.math.signGamma(100.0) == .plus)
-    }
+        @Test
+        func signGammaPositive() {
+            // Gamma is positive for all x >= 0
+            #expect(Double.math.signGamma(1.0) == .plus)
+            #expect(Double.math.signGamma(2.5) == .plus)
+            #expect(Double.math.signGamma(0.5) == .plus)
+            #expect(Double.math.signGamma(100.0) == .plus)
+        }
 
-    @Test
-    func signGammaNegativeIntegers() {
-        // At negative integers (poles), we assign .plus
-        #expect(Double.math.signGamma(-1.0) == .plus)
-        #expect(Double.math.signGamma(-2.0) == .plus)
-        #expect(Double.math.signGamma(-3.0) == .plus)
-    }
+        @Test
+        func signGammaNegativeIntegers() {
+            // At negative integers (poles), we assign .plus
+            #expect(Double.math.signGamma(-1.0) == .plus)
+            #expect(Double.math.signGamma(-2.0) == .plus)
+            #expect(Double.math.signGamma(-3.0) == .plus)
+        }
 
-    @Test
-    func signGammaNegativeNonIntegers() {
-        // Between -1 and 0: trunc = 0 (even) → minus
-        #expect(Double.math.signGamma(-0.5) == .minus)
+        @Test
+        func signGammaNegativeNonIntegers() {
+            // Between -1 and 0: trunc = 0 (even) → minus
+            #expect(Double.math.signGamma(-0.5) == .minus)
 
-        // Between -2 and -1: trunc = -1 (odd) → plus
-        #expect(Double.math.signGamma(-1.5) == .plus)
+            // Between -2 and -1: trunc = -1 (odd) → plus
+            #expect(Double.math.signGamma(-1.5) == .plus)
 
-        // Between -3 and -2: trunc = -2 (even) → minus
-        #expect(Double.math.signGamma(-2.5) == .minus)
+            // Between -3 and -2: trunc = -2 (even) → minus
+            #expect(Double.math.signGamma(-2.5) == .minus)
 
-        // Between -4 and -3: trunc = -3 (odd) → plus
-        #expect(Double.math.signGamma(-3.5) == .plus)
-    }
+            // Between -4 and -3: trunc = -3 (odd) → plus
+            #expect(Double.math.signGamma(-3.5) == .plus)
+        }
 
-    @Test
-    func logGammaAndSignGammaConsistency() {
-        // For positive values, exp(logGamma(x)) should equal |tgamma(x)|
-        let x = 3.5
-        let logG = Double.math.logGamma(x)
-        let gamma = Double.math.tgamma(x)
-        #expect(Double.math.exp(logG).equals.approximate(gamma.magnitude, tolerance: 1e-10))
+        @Test
+        func logGammaAndSignGammaConsistency() {
+            // For positive values, exp(logGamma(x)) should equal |tgamma(x)|
+            let x = 3.5
+            let logG = Double.math.logGamma(x)
+            let gamma = Double.math.tgamma(x)
+            #expect(Double.math.exp(logG).equals.approximate(gamma.magnitude, tolerance: 1e-10))
 
-        // Sign should match
-        #expect(Double.math.signGamma(x) == (gamma >= 0 ? .plus : .minus))
-    }
+            // Sign should match
+            #expect(Double.math.signGamma(x) == (gamma >= 0 ? .plus : .minus))
+        }
     #endif
 }

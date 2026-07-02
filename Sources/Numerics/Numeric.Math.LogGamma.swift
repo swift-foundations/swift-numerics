@@ -14,9 +14,9 @@
 // surface; the same Float-promotion pattern numeric-primitives previously
 // used in its _Shims `Float16(shim_expf(Float(x)))` form).
 
+public import ISO_9899_Core
 public import Numeric_Primitives_Core
 public import Real_Primitives
-public import ISO_9899_Core
 
 extension Numeric.Math.Accessor where T == Double {
     /// Natural logarithm of the absolute value of the gamma function.
@@ -47,20 +47,20 @@ extension Numeric.Math.Accessor where T == Float {
 }
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS) || ((os(macOS) || targetEnvironment(macCatalyst)) && arch(arm64))
-extension Numeric.Math.Accessor where T == Float16 {
-    /// Natural logarithm of the absolute value of the gamma function.
-    ///
-    /// Implementation forwards through `Float` since iso-9899's libm surface
-    /// does not include a Float16 variant. Float16 itself is hardware-bound
-    /// (gated by the `arch(arm64)` conditional matching numeric-primitives'
-    /// existing Float16 transcendental conformance per audit item 17).
-    @inlinable
-    public func lgamma(_ x: Float16) -> Float16 { Float16(ISO_9899.Math.lgamma(Float(x))) }
+    extension Numeric.Math.Accessor where T == Float16 {
+        /// Natural logarithm of the absolute value of the gamma function.
+        ///
+        /// Implementation forwards through `Float` since iso-9899's libm surface
+        /// does not include a Float16 variant. Float16 itself is hardware-bound
+        /// (gated by the `arch(arm64)` conditional matching numeric-primitives'
+        /// existing Float16 transcendental conformance per audit item 17).
+        @inlinable
+        public func lgamma(_ x: Float16) -> Float16 { Float16(ISO_9899.Math.lgamma(Float(x))) }
 
-    /// Natural logarithm of the absolute value of the gamma function.
-    ///
-    /// Spelling alias for ``lgamma(_:)``.
-    @inlinable
-    public func logGamma(_ x: Float16) -> Float16 { Float16(ISO_9899.Math.lgamma(Float(x))) }
-}
+        /// Natural logarithm of the absolute value of the gamma function.
+        ///
+        /// Spelling alias for ``lgamma(_:)``.
+        @inlinable
+        public func logGamma(_ x: Float16) -> Float16 { Float16(ISO_9899.Math.lgamma(Float(x))) }
+    }
 #endif
