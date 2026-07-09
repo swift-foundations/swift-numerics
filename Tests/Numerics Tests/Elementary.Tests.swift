@@ -38,7 +38,7 @@ struct ElementaryTests {
     // MARK: - Trigonometric Functions
 
     @Test
-    func sinAndCos() {
+    func `sin And Cos`() {
         let angle = Double.pi / 4
         let s = Double.math.sin(angle)
         let c = Double.math.cos(angle)
@@ -99,7 +99,7 @@ struct ElementaryTests {
     // MARK: - Root Functions
 
     @Test
-    func rootSquare() {
+    func `root Square`() {
         // √4 = 2
         let result = Double.math.root(4.0, 2)
         #expect(result.equals.approximate(2.0, tolerance: 1e-10))
@@ -110,7 +110,7 @@ struct ElementaryTests {
     }
 
     @Test
-    func rootCube() {
+    func `root Cube`() {
         // ∛8 = 2
         let result = Double.math.root(8.0, 3)
         #expect(result.equals.approximate(2.0, tolerance: 1e-10))
@@ -125,7 +125,7 @@ struct ElementaryTests {
     }
 
     @Test
-    func rootFourth() {
+    func `root Fourth`() {
         // ⁴√16 = 2
         let result = Double.math.root(16.0, 4)
         #expect(result.equals.approximate(2.0, tolerance: 1e-10))
@@ -136,7 +136,7 @@ struct ElementaryTests {
     }
 
     @Test
-    func rootNegativeEven() {
+    func `root Negative Even`() {
         // Even root of negative number is NaN
         let result = Double.math.root(-4.0, 2)
         #expect(result.isNaN)
@@ -146,7 +146,7 @@ struct ElementaryTests {
     }
 
     @Test
-    func rootNegativeOdd() {
+    func `root Negative Odd`() {
         // Odd roots of negative numbers are real
         let result = Double.math.root(-27.0, 3)
         #expect(result.equals.approximate(-3.0, tolerance: 1e-10))
@@ -156,7 +156,7 @@ struct ElementaryTests {
     }
 
     @Test
-    func rootFloat() {
+    func `root Float`() {
         // Test Float variant
         let result: Float = Float.math.root(8.0, 3)
         #expect(result.equals.approximate(2.0, tolerance: 1e-5))
@@ -169,7 +169,7 @@ struct ElementaryTests {
 
     #if canImport(Darwin) || canImport(Glibc) || canImport(Musl)
         @Test
-        func logGammaPositive() {
+        func `log Gamma Positive`() {
             // logGamma(1) = log(0!) = log(1) = 0
             let result = Double.math.logGamma(1.0)
             #expect(result.equals.approximate(0.0, tolerance: 1e-10))
@@ -188,14 +188,14 @@ struct ElementaryTests {
         }
 
         @Test
-        func logGammaFloat() {
+        func `log Gamma Float`() {
             // Test Float variant
             let result: Float = Float.math.logGamma(3.0)
             #expect(result.equals.approximate(Float.math.log(2.0), tolerance: 1e-5))
         }
 
         @Test
-        func signGammaPositive() {
+        func `sign Gamma Positive`() {
             // Gamma is positive for all x >= 0
             #expect(Double.math.signGamma(1.0) == .plus)
             #expect(Double.math.signGamma(2.5) == .plus)
@@ -204,7 +204,7 @@ struct ElementaryTests {
         }
 
         @Test
-        func signGammaNegativeIntegers() {
+        func `sign Gamma Negative Integers`() {
             // At negative integers (poles), we assign .plus
             #expect(Double.math.signGamma(-1.0) == .plus)
             #expect(Double.math.signGamma(-2.0) == .plus)
@@ -212,7 +212,7 @@ struct ElementaryTests {
         }
 
         @Test
-        func signGammaNegativeNonIntegers() {
+        func `sign Gamma Negative Non Integers`() {
             // Between -1 and 0: trunc = 0 (even) → minus
             #expect(Double.math.signGamma(-0.5) == .minus)
 
@@ -227,7 +227,7 @@ struct ElementaryTests {
         }
 
         @Test
-        func logGammaAndSignGammaConsistency() {
+        func `log Gamma And Sign Gamma Consistency`() {
             // For positive values, exp(logGamma(x)) should equal |tgamma(x)|
             let x = 3.5
             let logG = Double.math.logGamma(x)

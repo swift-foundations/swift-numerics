@@ -21,7 +21,7 @@ struct RealTests {
 
     #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS) || ((os(macOS) || targetEnvironment(macCatalyst)) && arch(arm64))
         @Test
-        func float16BasicOperations() {
+        func `float16 Basic Operations`() {
             // Test basic math operations
             let x: Float16 = 2.0
             let y: Float16 = 3.0
@@ -39,7 +39,7 @@ struct RealTests {
         }
 
         @Test
-        func float16Trigonometry() {
+        func `float16 Trigonometry`() {
             // sin(π/2) = 1
             #expect(Float16.math.sin(Float16.pi / 2).equals.approximate(1.0, tolerance: 1e-2))
 
@@ -51,7 +51,7 @@ struct RealTests {
         }
 
         @Test
-        func float16Root() {
+        func `float16 Root`() {
             // cube root of 8 = 2
             #expect(Float16.math.root(8.0, 3).equals.approximate(2.0, tolerance: 1e-2))
 
@@ -60,7 +60,7 @@ struct RealTests {
         }
 
         @Test
-        func float16Hypot() {
+        func `float16 Hypot`() {
             // 3² + 4² = 5²
             #expect(Float16.math.hypot(3.0, 4.0).equals.approximate(5.0, tolerance: 1e-2))
 
