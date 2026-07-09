@@ -15,7 +15,7 @@ import Testing
 @testable import Numerics
 
 @Suite
-struct ElementaryTests {
+struct `Elementary Tests` {
 
     // MARK: - Exponential Functions
 

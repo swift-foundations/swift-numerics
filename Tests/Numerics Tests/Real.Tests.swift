@@ -15,7 +15,7 @@ import Testing
 @testable import Numerics
 
 @Suite
-struct RealTests {
+struct `Real Tests` {
 
     // MARK: - Float16 Tests
 
