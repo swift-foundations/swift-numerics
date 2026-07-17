@@ -20,7 +20,7 @@ struct `Elementary Tests` {
     // MARK: - Exponential Functions
 
     @Test
-    func exp() {
+    func `Exp`() {
         let result = Double.math.exp(1.0)
         // e ≈ 2.71828...
         #expect(result.equals.approximate(2.718281828459045, tolerance: 1e-10))
@@ -29,7 +29,7 @@ struct `Elementary Tests` {
     // MARK: - Logarithmic Functions
 
     @Test
-    func log() {
+    func `Log`() {
         let e = Double.math.exp(1.0)
         let result = Double.math.log(e)
         #expect(result.equals.approximate(1.0, tolerance: 1e-10))
@@ -53,7 +53,7 @@ struct `Elementary Tests` {
     }
 
     @Test
-    func atan2() {
+    func `Atan2`() {
         // atan2(1, 1) = π/4
         let result = Double.math.atan2(1.0, 1.0)
         #expect(result.equals.approximate(Double.pi / 4, tolerance: 1e-10))
@@ -66,7 +66,7 @@ struct `Elementary Tests` {
     // MARK: - Hyperbolic Functions
 
     @Test
-    func hyperbolic() {
+    func `Hyperbolic`() {
         let x = 1.0
         let s = Double.math.sinh(x)
         let c = Double.math.cosh(x)
@@ -78,19 +78,19 @@ struct `Elementary Tests` {
     // MARK: - Power Functions
 
     @Test
-    func pow() {
+    func `Pow`() {
         let result = Double.math.pow(2.0, 3.0)
         #expect(result.equals.approximate(8.0, tolerance: 1e-10))
     }
 
     @Test
-    func sqrt() {
+    func `Sqrt`() {
         let result = Double.math.sqrt(4.0)
         #expect(result.equals.approximate(2.0, tolerance: 1e-15))
     }
 
     @Test
-    func hypot() {
+    func `Hypot`() {
         // 3² + 4² = 5²
         let result = Double.math.hypot(3.0, 4.0)
         #expect(result.equals.approximate(5.0, tolerance: 1e-10))
