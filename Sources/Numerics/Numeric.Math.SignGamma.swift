@@ -12,12 +12,15 @@ extension Numeric.Math.Accessor where T == Double {
     /// - For x >= 0: always positive
     /// - For negative non-integers: alternates based on floor(x)
     /// - At negative integers (poles): returns positive by convention
+    /// - For NaN: returns positive by convention
+    /// - For -infinity: returns positive by convention (pole-like)
     @inlinable
     public func signGamma(_ x: Double) -> FloatingPointSign {
+        if x.isNaN { return .plus }
         if x >= 0 { return .plus }
-        let truncated = Int(x)
-        if Double(truncated) == x { return .plus }
-        return truncated.isMultiple(of: 2) ? .minus : .plus
+        let truncated = x.rounded(.towardZero)
+        if truncated == x { return .plus }
+        return truncated.truncatingRemainder(dividingBy: 2) == 0 ? .minus : .plus
     }
 }
 
@@ -28,11 +31,14 @@ extension Numeric.Math.Accessor where T == Float {
     /// - For x >= 0: always positive
     /// - For negative non-integers: alternates based on floor(x)
     /// - At negative integers (poles): returns positive by convention
+    /// - For NaN: returns positive by convention
+    /// - For -infinity: returns positive by convention (pole-like)
     @inlinable
     public func signGamma(_ x: Float) -> FloatingPointSign {
+        if x.isNaN { return .plus }
         if x >= 0 { return .plus }
-        let truncated = Int(x)
-        if Float(truncated) == x { return .plus }
-        return truncated.isMultiple(of: 2) ? .minus : .plus
+        let truncated = x.rounded(.towardZero)
+        if truncated == x { return .plus }
+        return truncated.truncatingRemainder(dividingBy: 2) == 0 ? .minus : .plus
     }
 }
