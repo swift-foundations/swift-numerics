@@ -1,23 +1,26 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
 let package = Package(
     name: "swift-numerics",
     platforms: [
-        .macOS(.v26),
-        .iOS(.v26),
-        .tvOS(.v26),
-        .watchOS(.v26),
-        .visionOS(.v26)
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         .library(name: "Numerics", targets: ["Numerics"])
     ],
     dependencies: [
         .package(url: "https://github.com/swift-ieee/swift-ieee-754.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-numeric-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main")
+        .package(
+            url: "https://github.com/swift-primitives/swift-numeric-primitives.git",
+            branch: "main"
+        ),
+        .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -27,13 +30,13 @@ let package = Package(
                 .product(name: "Numeric Primitives", package: "swift-numeric-primitives"),
                 .product(name: "Real Primitives", package: "swift-numeric-primitives"),
                 .product(name: "Integer Primitives", package: "swift-numeric-primitives"),
-                .product(name: "ISO 9899 Core", package: "swift-iso-9899")
+                .product(name: "ISO 9899 Core", package: "swift-iso-9899"),
             ]
         ),
         .testTarget(
             name: "Numerics Tests",
             dependencies: [
-                "Numerics",
+                "Numerics"
             ]
         ),
     ],
