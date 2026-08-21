@@ -1,9 +1,3 @@
-// Numeric.Math.SignGamma.Tests.swift
-// swift-numerics
-//
-// Regression tests for signGamma edge cases (fable-448 F-001).
-// Generic-namespace source (Numeric.Math.Accessor<T>): top-level @Suite carve-out.
-
 import Testing
 
 @testable import Numerics
@@ -33,7 +27,7 @@ struct Tests {
 
     @Test
     func `sign Gamma Double magnitude beyond Int range returns plus without trapping`() {
-        // Every Double with magnitude >= 2^53 is integral, so poles convention applies.
+
         #expect(Double.math.signGamma(-1e300) == .plus)
         #expect(Double.math.signGamma(-9.3e18) == .plus)
     }
@@ -63,7 +57,7 @@ struct Tests {
 
     @Test
     func `sign Gamma Float magnitude beyond Int range returns plus without trapping`() {
-        // Every Float with magnitude >= 2^24 is integral, so poles convention applies.
+
         #expect(Float.math.signGamma(-1e30) == .plus)
         #expect(Float.math.signGamma(-9.3e18) == .plus)
     }
